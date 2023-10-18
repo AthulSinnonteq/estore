@@ -14,7 +14,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final TextEditingController usernameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  bool isLoading = false; // Flag to track API call loading
+  bool isLoading = false; // Flag to check API call loading
   bool isPasswordVisible = false;
 
   // final apiService = ApiService('https://reqres.in/');
@@ -23,14 +23,14 @@ class _LoginPageState extends State<LoginPage> {
     setState(() {
       isLoading = true; // Show loader
     });
-    // final username = usernameController.text;
-    // final password = passwordController.text;
+    final username = usernameController.text;
+    final password = passwordController.text;
 
-    final username = 'eve.holt@reqres.in';
-    final password = 'cityslicka';
+    // final username = 'eve.holt@reqres.in';
+    // final password = 'cityslicka';
 
     // final response = await http.post(
-    //   Uri.parse('https://reqres.in/api/login'), // Replace with your API endpoint
+    //   Uri.parse('https://reqres.in/api/login'),
     //   headers: <String, String>{
     //     'Content-Type': 'application/json; charset=UTF-8',
     //   },
@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
     // // );
 
     // } else {
-    //   // Authentication failed, handle errors or other status codes.
+    //   // Authentication failed, handle errors
     //   print('Login failed: ${response.reasonPhrase}');
 
     // }
@@ -63,9 +63,8 @@ class _LoginPageState extends State<LoginPage> {
       final response = await apiService.login(username, password);
       print('Login successful: $response');
       // Save the login state
-    await apiService.saveLoginState();
-      // Handle the response here
-    Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
+    // await apiService.saveLoginState();
+    // Navigator.push(context, MaterialPageRoute(builder: (context)=> HomePage()));
 
       // Navigator.pushAndRemoveUntil(
       //   context,
@@ -95,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
             Container(
               height: 100,
               width: 100,
-              child: Image.asset('assets/images/logo.jpg')), // Your logo or image
+              child: Image.asset('assets/images/logo.jpg')),
             const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.all(16.0),
